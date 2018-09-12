@@ -15,16 +15,26 @@ class ViewController: UIViewController {
     @IBOutlet var cardButtons: [UIButton]!
     
     @IBAction func touchCard(_ sender: UIButton) {
-        updateViewFromModel()
+        if let cardNumber = cardButtons.index(of: sender) {
+            game.chooseCard(at: cardNumber)
+            updateViewFromModel()
+        } else {
+            print("chosen card was not in cardButtons")
+        }
     }
     
     @IBAction func dealCards(_ sender: UIButton) {
-        updateViewFromModel()
-        
         if (!game.startOfTheGame) {
-            game.startOfTheGame = false
             
+            if (game.numberOfCurrentCards <= 21) {
+                game.numberOfCurrentCards += 3
+            }
             //TODO: Finish logic for dealing new cards
+            
+            updateViewFromModel()
+        } else {
+            updateViewFromModel()
+            game.startOfTheGame = false
         }
     }
     
@@ -44,7 +54,9 @@ class ViewController: UIViewController {
                 setButtonData(at: index)
             }
         } else {
-            // Finish
+            for index in 0..<game.numberOfCurrentCards {
+                setButtonData(at: index)
+            }
         }
     }
     
@@ -52,9 +64,33 @@ class ViewController: UIViewController {
         let button = cardButtons[index]
         let card = game.cards[index]
         
-        button.setTitle(card.icon, for: UIControlState.normal)
+        // Button titles
+        if (card.show){
+            button.setTitle(card.icon, for: UIControlState.normal)
+        } else {
+            button.setTitle(nil, for: UIControlState.normal)
+        }
+        
+        /*switch card.fill {
+            case Fill.hollow:
+                
+                break
+            case Fill.stripe:
+                
+                break
+            default:
+                
+                break
+        }*/
+        
         button.setTitleColor(card.colour,for: UIControlState.normal)
+        
+        // Button background color
         button.backgroundColor = card.show ? #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0)
+        
+        // Button border when selected
+        button.layer.borderWidth = card.isSelected ? 3.0 : 0.0
+        button.layer.borderColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
     }
 }
 

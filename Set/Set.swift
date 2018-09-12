@@ -13,6 +13,8 @@ struct Set {
     
     let numberOfInitalCards = 12
     
+    var numberOfCurrentCards = 12
+    
     var startOfTheGame = true
     
     // Array of strings that are displayed on cards
@@ -25,7 +27,7 @@ struct Set {
     var cards = [Card]()
     
     mutating func chooseCard(at index: Int) {
-        
+        cards[index].isSelected = true
     }
     
     init() {
