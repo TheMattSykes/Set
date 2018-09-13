@@ -258,29 +258,53 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIm-Ia-qxW">
-                                <rect key="frame" x="149.5" y="587" width="75" height="30"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Deal Cards"/>
-                                <connections>
-                                    <action selector="dealCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aFL-xG-olZ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="94T-dS-AaP">
+                                <rect key="frame" x="107" y="587" width="160" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lON-kL-9vw">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="New Game">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="touchNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xkt-rV-uUG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIm-Ia-qxW">
+                                        <rect key="frame" x="85" y="0.0" width="75" height="30"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Deal Cards"/>
+                                        <connections>
+                                            <action selector="dealCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aFL-xG-olZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2E1-Uj-Pok">
+                                <rect key="frame" x="155" y="546.5" width="64" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="aIm-Ia-qxW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="OgY-Rh-5e8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aIm-Ia-qxW" secondAttribute="bottom" constant="50" id="WJu-kI-fs3"/>
+                            <constraint firstItem="94T-dS-AaP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="107" id="0hd-AV-pJd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="94T-dS-AaP" secondAttribute="trailing" constant="108" id="6pj-36-7B7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="94T-dS-AaP" secondAttribute="bottom" constant="50" id="KPU-y9-sff"/>
                             <constraint firstItem="MLj-2G-gre" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="Z8M-7W-zVQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aIm-Ia-qxW" secondAttribute="trailing" constant="110" id="mOh-8L-0bE"/>
-                            <constraint firstItem="aIm-Ia-qxW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="nZe-Ba-J72"/>
+                            <constraint firstItem="94T-dS-AaP" firstAttribute="top" secondItem="2E1-Uj-Pok" secondAttribute="bottom" constant="20" id="gQ3-RN-lJx"/>
+                            <constraint firstItem="2E1-Uj-Pok" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="155" id="neE-8Z-hKz"/>
+                            <constraint firstItem="2E1-Uj-Pok" firstAttribute="top" relation="greaterThanOrEqual" secondItem="MLj-2G-gre" secondAttribute="bottom" priority="400" constant="249.5" id="oa1-PY-DRG"/>
                             <constraint firstItem="MLj-2G-gre" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="vUi-eY-Oq5"/>
-                            <constraint firstItem="MLj-2G-gre" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wc1-Ep-WPF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2E1-Uj-Pok" secondAttribute="trailing" constant="156" id="x4U-bt-yGr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MLj-2G-gre" secondAttribute="trailing" constant="16" id="yPV-Vj-WEJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="scoreLabel" destination="2E1-Uj-Pok" id="YpQ-C3-q9p"/>
                         <outletCollection property="cardButtons" destination="wQK-AX-bXn" collectionClass="NSMutableArray" id="uxx-8n-WAi"/>
                         <outletCollection property="cardButtons" destination="Ya8-iX-gmJ" collectionClass="NSMutableArray" id="xQn-ws-xXr"/>
                         <outletCollection property="cardButtons" destination="hgR-5a-PT2" collectionClass="NSMutableArray" id="jfy-G4-bNc"/>

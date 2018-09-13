@@ -12,9 +12,16 @@ class ViewController: UIViewController {
     
     private lazy var game = newGame()
     
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet weak var scoreLabel: UILabel!
     
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBOutlet private var cardButtons: [UIButton]!
+    
+    @IBAction func touchNewGame(_ sender: UIButton) {
+        // TODO: New Game Logic
+    }
+    
+    
+    @IBAction private func touchCard(_ sender: UIButton) {
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -26,7 +33,7 @@ class ViewController: UIViewController {
     @IBAction func dealCards(_ sender: UIButton) {
         if (!game.startOfTheGame) {
             
-            if (game.numberOfCurrentCards <= 21) {
+            if (game.numberOfCurrentCards <= (game.maxNumberOfDisplayCards-3)) {
                 game.numberOfCurrentCards += 3
             }
             //TODO: Finish logic for dealing new cards
@@ -58,6 +65,8 @@ class ViewController: UIViewController {
                 setButtonData(at: index)
             }
         }
+        
+        scoreLabel.text = game.scoreLabelData
     }
     
     private func setButtonData(at index: Int){

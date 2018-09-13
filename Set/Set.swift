@@ -11,9 +11,23 @@ import Foundation
 
 struct Set {
     
+    var scoreLabelData = "Sets: 0"
+    
+    var score = 0 {
+        didSet {
+            scoreLabelData = "Flips: \(score)"
+        }
+    }
+    
+    
     let numberOfInitalCards = 12
     
+    let maxNumberOfDisplayCards = 24
+    
     var numberOfCurrentCards = 12
+    
+    private var numberOfSelectedCards = 0
+    private var numberOfCardsRemoved = 0
     
     var startOfTheGame = true
     
@@ -26,8 +40,65 @@ struct Set {
     
     var cards = [Card]()
     
+    // Check three cards to see if they're a set
+    private mutating func checkForSets() {
+        var listOfSelectedCards = [Card]()
+        var listOfIndexes = [Int]() // store index of selected cards in cards array
+        
+        // Generate list of selected cards and their index
+        for index in 0..<cards.count {
+            if (cards[index].isSelected) {
+                listOfSelectedCards.append(cards[index])
+                listOfIndexes.append(index)
+            }
+        }
+        
+        // Variables to store whether cards match
+        var iconsMatch = true
+        var coloursMatch = true
+        var fillsMatch = true
+        
+        for index in 1..<(listOfSelectedCards.count) {
+            if (listOfSelectedCards[index].icon != listOfSelectedCards[index-1].icon) {
+                iconsMatch = false
+            }
+            
+            if (listOfSelectedCards[index].colour != listOfSelectedCards[index-1].colour) {
+                coloursMatch = false
+            }
+            
+            if (listOfSelectedCards[index].fill != listOfSelectedCards[index-1].fill) {
+                fillsMatch = false
+            }
+        }
+        
+        // Stop showing matched cards
+        if (iconsMatch || coloursMatch || fillsMatch) {
+            
+            for index in listOfIndexes {
+                cards[index].show = false
+                print("MARKED \(index) as false")
+            }
+        }
+    }
+    
+    private mutating func deselectAllCards() {
+        for index in 0..<cards.count {
+            cards[index].isSelected = false
+        }
+    }
+    
     mutating func chooseCard(at index: Int) {
-        cards[index].isSelected = true
+        if (!cards[index].isSelected) {
+            numberOfSelectedCards += 1
+            cards[index].isSelected = true
+            
+            if (numberOfSelectedCards == 3) {
+                checkForSets()
+                numberOfSelectedCards = 0
+                deselectAllCards()
+            }
+        }
     }
     
     init() {
@@ -42,6 +113,7 @@ struct Set {
         }
         
         var newCardsList = [Card]()
+        
         // Insert random element from first array into new array
         for _ in 0..<cards.count {
             let randomCardIndex = Int(arc4random_uniform(UInt32(cards.count)))
